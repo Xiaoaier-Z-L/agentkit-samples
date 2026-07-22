@@ -193,6 +193,10 @@ def test_root_is_harness_specific_build_route_not_customer_demo() -> None:
     assert 'href="/chat"' in index.text
     assert "混合云开发指南 ↗" in index.text
     assert "docs/ralph_customer_service_mapping.md" in index.text
+    assert 'id="development-guide-link"' in index.text
+    assert "Xiaoaier-Z-L/agentkit-samples" in index.text
+    assert "codex/hybrid-cloud-agent-harness-engineering" in index.text
+    assert "bytedance/agentkit-samples/blob/main" not in index.text
     assert "OpenAI 原文 ↗" in index.text
     assert "https://openai.com/zh-Hans-CN/index/harness-engineering/" in index.text
     assert "工程技术：在智能体优先的世界中利用 Codex" in index.text
@@ -208,5 +212,7 @@ def test_root_is_harness_specific_build_route_not_customer_demo() -> None:
     assert "验证完成承诺并治理熵" in guide_js.text
     assert "engineering_harness.py" in guide_js.text
     assert "docs/ralph_customer_service_mapping.md" in guide_js.text
+    assert "Xiaoaier-Z-L/agentkit-samples" in guide_js.text
+    assert "codex/hybrid-cloud-agent-harness-engineering" in guide_js.text
     assert "deusyu/harness-engineering" in guide_js.text
     assert 'id="detail-links"' in index.text

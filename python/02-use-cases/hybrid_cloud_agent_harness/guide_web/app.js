@@ -1,7 +1,10 @@
-const REPOSITORY_ROOT = 'https://github.com/bytedance/agentkit-samples';
+// The demo currently lives on this fork branch. After it is merged upstream,
+// only REPOSITORY_ROOT and BRANCH need to change.
+const REPOSITORY_ROOT = 'https://github.com/Xiaoaier-Z-L/agentkit-samples';
+const BRANCH = 'codex/hybrid-cloud-agent-harness-engineering';
 const DEMO_PATH = 'python/02-use-cases/hybrid_cloud_agent_harness';
-const fileUrl = path => `${REPOSITORY_ROOT}/blob/main/${DEMO_PATH}/${path}`;
-const directoryUrl = path => `${REPOSITORY_ROOT}/tree/main/${DEMO_PATH}/${path}`;
+const fileUrl = path => `${REPOSITORY_ROOT}/blob/${BRANCH}/${DEMO_PATH}/${path}`;
+const directoryUrl = path => `${REPOSITORY_ROOT}/tree/${BRANCH}/${DEMO_PATH}/${path}`;
 const REFERENCE_ROOT = 'https://github.com/deusyu/harness-engineering';
 
 const STEPS = [
@@ -133,6 +136,7 @@ function render() {
 }
 
 document.querySelector('#previous').addEventListener('click', () => { if (active > 0) { active -= 1; render(); } });
+document.querySelector('#development-guide-link').href = fileUrl('docs/ralph_customer_service_mapping.md');
 document.querySelector('#next').addEventListener('click', () => {
   if (active === STEPS.length - 1) window.location.href = '/chat';
   else { active += 1; render(); }
