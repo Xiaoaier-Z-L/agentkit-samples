@@ -1,0 +1,5 @@
+name: hybrid_cloud_agent_harness
+category: use-case
+language: python
+difficulty: advanced
+description: AgentKit hybrid-cloud production Agent Harness best-practice demo.

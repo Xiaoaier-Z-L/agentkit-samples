@@ -1,0 +1,11 @@
+name: hybrid_cloud_agent_harness
+entry_point: agent.py
+python_version: "3.12"
+launch_type: hybrid
+requirements: requirements.txt
+envs:
+  DEMO_MODE: auto
+  MODEL_AGENT_NAME: ${MODEL_AGENT_NAME}
+  MODEL_AGENT_API_KEY: ${MODEL_AGENT_API_KEY}
+  MODEL_AGENT_API_BASE: ${MODEL_AGENT_API_BASE}
+  HARNESS_TENANT_ID: ${HARNESS_TENANT_ID}

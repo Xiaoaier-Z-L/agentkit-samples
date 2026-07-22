@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# 公共变量配置（从环境变量读取）
+# AgentKit OpenAPI 的访问域名，其中 xxx、yyy 为云管理平台用户端的域名，请根据实际情况替换。
+COMMON_HOST="openapi.xxx.yyy"
+REGION="${VOLCENGINE_REGION:?请先设置 VOLCENGINE_REGION}"
+AK="${VOLCENGINE_ACCESS_KEY:?请先设置 VOLCENGINE_ACCESS_KEY}"
+SK="${VOLCENGINE_SECRET_KEY:?请先设置 VOLCENGINE_SECRET_KEY}"
+
+set_config() {
+  local key="$1"
+  local value="$2"
+  agentkit config --global --set "${key}=${value}"
+}
+
+set_config "services.agentkit.host" "${COMMON_HOST}"
+set_config "services.agentkit.scheme" "http"
+set_config "services.iam.host" "${COMMON_HOST}"
+set_config "services.iam.scheme" "http"
+set_config "services.cr.host" "${COMMON_HOST}"
+set_config "services.cr.scheme" "http"
+
+set_config "cr.instance_name" "cr-basic"
+set_config "cr.namespace_name" "agentkit"
+
+set_config "volcengine.access_key" "${AK}"
+set_config "volcengine.secret_key" "${SK}"
+set_config "region" "${REGION}"
+
+set_config "defaults.launch_type" "hybrid"
+set_config "defaults.preflight_mode" "skip"
+set_config "defaults.cr_public_endpoint_check" "false"
+set_config "defaults.iam_role_policies" "ServiceRoleForAgentKit"
+set_config "defaults.disable_region_strict_restrictions" "true"
+
+echo "AgentKit CLI configuration completed for ${COMMON_HOST}."

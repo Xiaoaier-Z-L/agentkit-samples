@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="AgentKit 混合云 Harness Engineering 建设路线" />
+    <title>Harness Engineering 建设路线</title>
+    <link rel="stylesheet" href="/guide/styles.css" />
+  </head>
+  <body>
+    <header class="masthead">
+      <a class="brand" href="/">AGENTKIT / HARNESS</a>
+      <nav>
+        <a href="https://github.com/bytedance/agentkit-samples/blob/main/python/02-use-cases/hybrid_cloud_agent_harness/docs/ralph_customer_service_mapping.md" target="_blank" rel="noreferrer">混合云开发指南 ↗</a>
+        <a href="https://openai.com/zh-Hans-CN/index/harness-engineering/" target="_blank" rel="noreferrer">OpenAI 原文 ↗</a>
+        <a href="/chat">进入治理工作台 ↗</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <p class="kicker">HYBRID CLOUD · PRODUCTION GOVERNANCE</p>
+          <h1>把“能运行的 Agent”<br />装进可上线的 Harness</h1>
+        </div>
+        <div class="hero-copy">
+          <p class="lead">这不是再做一遍客服能力，也不只是给请求包一层安全网。这里从已跑通的业务 Agent 出发，设计智能体可读的环境、持久状态、角色循环、机械反馈与可证明的停止条件。</p>
+          <p class="origin-note"><span>理念来源</span> OpenAI 在《<a href="https://openai.com/zh-Hans-CN/index/harness-engineering/" target="_blank" rel="noreferrer">工程技术：在智能体优先的世界中利用 Codex</a>》中总结了“人类掌舵、智能体执行”：工程师的重点转向设计环境、明确意图和构建反馈回路。本页面展示这些原则在 AgentKit 混合云客服规则交付中的映射。</p>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <aside>
+          <div class="aside-title">治理流水线 <span>6 GATES</span></div>
+          <div id="step-list" class="step-list"></div>
+        </aside>
+
+        <article class="detail-card">
+          <div class="detail-head">
+            <div><p id="detail-step" class="step-label"></p><h2 id="detail-title"></h2></div>
+            <span id="detail-badge" class="badge"></span>
+          </div>
+          <p id="detail-summary" class="summary"></p>
+
+          <div class="decision-strip">
+            <span>SPEC</span><i>→</i><span>FRESH CONTEXT</span><i>→</i><span>ACT</span><i>→</i><span>FEEDBACK</span><i>→</i><strong>COMPLETE / CONTINUE</strong>
+          </div>
+
+          <div class="two-columns">
+            <section class="panel"><small>这一层解决什么</small><div id="detail-value"></div></section>
+            <section class="panel accent"><small>必须留下的证据</small><ul id="detail-proof"></ul></section>
+          </div>
+
+          <div class="code-head"><strong>关键实现</strong><span id="detail-files"></span></div>
+          <pre><code id="detail-code"></code></pre>
+
+          <div class="failure-box">
+            <small>FAIL-CLOSED CHECK</small>
+            <p id="detail-failure"></p>
+          </div>
+
+          <section class="resource-section" aria-label="源码、文档与参考资料">
+            <small>继续查看</small>
+            <div id="detail-links"></div>
+          </section>
+
+          <div class="actions">
+            <button id="previous" type="button">← 上一层</button>
+            <button id="next" class="primary" type="button">下一层 →</button>
+          </div>
+        </article>
+      </section>
+
+      <section class="difference">
+        <p class="kicker">WHAT CHANGED</p>
+        <h2>与客服基础 Demo 的边界</h2>
+        <div class="compare-grid">
+          <div><small>客服基础 Demo</small><strong>证明业务能力可用</strong><p>知识、记忆、工单、Sandbox、MCP、Skills、A2A。</p></div>
+          <div class="arrow">→</div>
+          <div><small>Harness Engineering</small><strong>证明 Agent 能自主可靠地交付变化</strong><p>版本化意图、fresh context、角色循环、机械背压、持久状态、独立 Critic 与完成承诺。</p></div>
+        </div>
+      </section>
+    </main>
+
+    <footer><span>AgentKit Hybrid Cloud Harness</span><a href="/chat">打开交互式验收工作台 ↗</a></footer>
+    <script src="/guide/app.js"></script>
+  </body>
+</html>

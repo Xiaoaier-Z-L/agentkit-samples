@@ -1,0 +1,7 @@
+{
+  "refund_window_days": 10,
+  "manual_confirmation": true,
+  "citation_required": true,
+  "source": "refund_policy.md",
+  "completion_promise": "HARNESS_COMPLETE"
+}
