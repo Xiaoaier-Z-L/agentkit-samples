@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="AgentKit 混合云 Loop Engineering 建设路线" />
+    <title>Loop Engineering 建设路线</title>
+    <link rel="stylesheet" href="/guide/styles.css" />
+  </head>
+  <body>
+    <header class="masthead">
+      <a class="brand" href="/">AGENTKIT / LOOP</a>
+      <nav>
+        <a id="development-guide-link" href="#" target="_blank" rel="noreferrer">开发指南 ↗</a>
+        <a href="/chat">进入验收工作台 ↗</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <p class="kicker">HYBRID CLOUD · EVIDENCE-DRIVEN CONTROL LOOP</p>
+          <h1>让 Agent 迭代，<br />让代码决定边界</h1>
+        </div>
+        <div class="hero-copy">
+          <p class="lead">沿用混合云客服 Demo 的真实业务能力，用目标、预算、证据、checkpoint 和停止原因把开放式推理收敛成可测试的生产状态机。</p>
+          <p class="case-note"><span>贯穿场景</span>一次退款闭环依次查询规则依据、分析 237 笔交易，并在预算允许时创建幂等工单；每一步都必须留下结构化证据。</p>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <aside>
+          <div class="aside-title">控制循环 <span>6 STAGES</span></div>
+          <div id="step-list" class="step-list"></div>
+        </aside>
+
+        <article class="detail-card">
+          <div class="detail-head">
+            <div><p id="detail-step" class="step-label"></p><h2 id="detail-title"></h2></div>
+            <span id="detail-badge" class="badge"></span>
+          </div>
+          <p id="detail-summary" class="summary"></p>
+
+          <div class="loop-strip">
+            <span>OBJECTIVE</span><i>→</i><span>PLAN</span><i>→</i><span>ACT</span><i>→</i><span>OBSERVE</span><i>→</i><span>CRITIC</span><i>→</i><strong>STOP / NEXT</strong>
+          </div>
+
+          <div class="two-columns">
+            <section class="panel"><small>混合云落点</small><div id="detail-value"></div></section>
+            <section class="panel accent"><small>验收证据</small><ul id="detail-proof"></ul></section>
+          </div>
+
+          <div class="code-head"><strong>关键契约</strong><span id="detail-files"></span></div>
+          <pre><code id="detail-code"></code></pre>
+
+          <div class="failure-box">
+            <small>FAIL-CLOSED CHECK</small>
+            <p id="detail-failure"></p>
+          </div>
+
+          <div class="actions">
+            <button id="previous" type="button">← 上一步</button>
+            <button id="next" class="primary" type="button">下一步 →</button>
+          </div>
+        </article>
+      </section>
+
+      <section class="difference">
+        <p class="kicker">WHAT CHANGED</p>
+        <h2>不是给客服 Demo 固定加两条事件</h2>
+        <div class="compare-grid">
+          <div><small>混合云客服 Demo</small><strong>证明能力真实可用</strong><p>Knowledge、MEM0、Session、工具、Sandbox、MCP、Skill、A2A 与 Runtime。</p></div>
+          <div class="arrow">→</div>
+          <div><small>Loop Engineering</small><strong>证明多步目标可控地闭环</strong><p>目标级计划、真实预算、证据验收、副作用 checkpoint、无进展停止与 Trace。</p></div>
+        </div>
+      </section>
+    </main>
+
+    <footer><span>AgentKit Hybrid Cloud Loop Engineering</span><a href="/chat">运行退款闭环验收 ↗</a></footer>
+    <script src="/guide/app.js"></script>
+  </body>
+</html>

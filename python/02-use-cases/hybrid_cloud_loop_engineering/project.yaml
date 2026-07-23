@@ -1,0 +1,5 @@
+name: hybrid_cloud_loop_engineering
+category: use-case
+language: python
+difficulty: advanced
+description: AgentKit hybrid-cloud bounded-loop engineering best-practice demo.
