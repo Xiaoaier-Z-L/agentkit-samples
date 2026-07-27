@@ -7,9 +7,9 @@ from fastapi.testclient import TestClient
 
 from agent import (
     PublicInvokeOriginMiddleware,
+    agent_harness_demo,
     build_short_term_memory,
     configured_skill_space_ids,
-    agent_harness_demo,
     customer_policy_harness,
     hide_adk_discovery_route,
     long_term_memory_enabled,
@@ -20,9 +20,9 @@ from agent import (
 )
 from demo_app import app
 from demo_core import HybridCustomerService
+from platform_request_context import RequestAuthorizationMiddleware, request_identity
 from tools import CRMTool
 from utils.config import Settings
-from platform_request_context import RequestAuthorizationMiddleware, request_identity
 
 
 def test_knowledge_answer_has_citation() -> None:

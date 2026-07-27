@@ -112,7 +112,7 @@ async def a2a_endpoint(request: Request) -> dict[str, object]:
     payload = await request.json()
     params = payload.get("params", {})
     text = params.get("message", {}).get("parts", [{}])[0].get("text", "分析投诉趋势")
-    result = service.chat(text, session_id=str(params.get("sessionId", "a2a-session"))).to_dict()
+    result = service.invoke(text, session_id=str(params.get("sessionId", "a2a-session"))).to_dict()
     return {
         "jsonrpc": "2.0",
         "id": payload.get("id"),
@@ -150,7 +150,7 @@ async def mcp_endpoint(request: Request) -> dict[str, object]:
         }
     elif method == "tools/call":
         name = payload.get("params", {}).get("name")
-        answer = service.chat(
+        answer = service.invoke(
             "分析这 237 笔交易的总收益"
             if name == "calculate_transaction_summary"
             else "理财产品可以退吗"
@@ -173,7 +173,7 @@ def chat(
         identity = resolve_identity(request.tenant_id, request.user_id, authorization)
     except PermissionError as exc:
         raise HTTPException(status_code=403, detail=str(exc)) from exc
-    return service.chat(
+    return service.invoke(
         request.message,
         tenant_id=identity.tenant_id,
         user_id=identity.user_id,
@@ -185,7 +185,7 @@ def chat(
 @app.post("/invoke")
 def invoke(request: InvokeRequest) -> dict[str, object]:
     """Compatibility endpoint used by the AgentKit console online test."""
-    return service.chat(
+    return service.invoke(
         request.prompt,
         tenant_id=request.tenant_id,
         user_id=request.user_id,
@@ -202,7 +202,7 @@ def a2ui(
         identity = resolve_identity(request.tenant_id, request.user_id, authorization)
     except PermissionError as exc:
         raise HTTPException(status_code=403, detail=str(exc)) from exc
-    result = service.chat(
+    result = service.invoke(
         request.message,
         tenant_id=identity.tenant_id,
         user_id=identity.user_id,

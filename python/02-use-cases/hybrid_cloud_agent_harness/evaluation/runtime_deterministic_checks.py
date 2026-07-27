@@ -7,10 +7,7 @@
 from dataclasses import dataclass
 from typing import Any
 
-
-try:
-    EvalOutput  # type: ignore[name-defined]
-except NameError:
+if "EvalOutput" not in globals():
 
     @dataclass
     class EvalOutput:  # type: ignore[no-redef]

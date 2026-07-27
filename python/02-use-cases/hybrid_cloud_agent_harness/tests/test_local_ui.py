@@ -3,9 +3,9 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-import local_ui
 from fastapi.testclient import TestClient
 
+import local_ui
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 

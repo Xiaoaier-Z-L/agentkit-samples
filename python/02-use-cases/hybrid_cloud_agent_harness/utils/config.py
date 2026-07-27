@@ -14,7 +14,7 @@ class Settings:
     model_api_base: str
 
     @classmethod
-    def from_env(cls) -> "Settings":
+    def from_env(cls) -> Settings:
         mode = os.getenv("DEMO_MODE", "auto").lower()
         if mode not in {"auto", "live", "demo"}:
             raise ValueError("DEMO_MODE must be auto, live, or demo")

@@ -76,8 +76,9 @@ def sandbox_calculate(expression: str) -> dict[str, Any]:
     if not expression or any(char not in set("0123456789+-*/(). %") for char in expression):
         raise ValueError("sandbox expression contains unsupported characters")
     script = (
-        "import ast;print(eval(compile(ast.parse(%r,mode='eval'),'<sandbox>','eval'),{'__builtins__':{}},{}))"
-        % expression
+        "import ast;print(eval(compile("
+        f"ast.parse({expression!r},mode='eval'),'<sandbox>','eval'),"
+        "{'__builtins__':{}},{}))"
     )
     result = subprocess.run(
         [os.getenv("PYTHON_BIN", "python3"), "-I", "-c", script],

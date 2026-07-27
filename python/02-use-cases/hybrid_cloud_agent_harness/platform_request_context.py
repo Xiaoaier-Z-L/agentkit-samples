@@ -10,14 +10,13 @@ environment variable.
 
 from __future__ import annotations
 
+import os
+from collections.abc import Callable
 from contextvars import ContextVar
 from dataclasses import dataclass
-import os
-from typing import Callable
-
 
 _request_authorization: ContextVar[str] = ContextVar("agentkit_request_authorization", default="")
-_request_identity: ContextVar["GatewayIdentity | None"] = ContextVar(
+_request_identity: ContextVar[GatewayIdentity | None] = ContextVar(
     "agentkit_request_identity", default=None
 )
 

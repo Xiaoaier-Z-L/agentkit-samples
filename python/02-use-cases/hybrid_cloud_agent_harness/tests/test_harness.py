@@ -1,6 +1,15 @@
-from harness import AgentHarness, HarnessPolicy, RoutePolicy
 from evaluation.runtime_deterministic_checks_v1 import exec_evaluation
+from harness import AgentHarness, HarnessPolicy, RoutePolicy
 from utils.models import AgentResponse, CapabilityEvent
+
+
+def test_runtime_tool_uses_harness_invoke_contract() -> None:
+    from agent import agent_harness_demo
+
+    result = agent_harness_demo("退款规则是什么？")
+
+    assert '"harness.request.accept"' in result
+    assert '"harness.telemetry.export"' in result
 
 
 def test_harness_wraps_validated_business_core() -> None:
@@ -128,9 +137,7 @@ def test_route_policy_denies_registered_tool_on_wrong_route() -> None:
     agent = StubAgent(stub_response(CapabilityEvent("tool.work_order.create")))
     response = AgentHarness(agent=agent).invoke("分析 237 笔交易")
 
-    assert response.events[-3].detail["violations"] == [
-        "route_denied:tool.work_order.create"
-    ]
+    assert response.events[-3].detail["violations"] == ["route_denied:tool.work_order.create"]
 
 
 def test_telemetry_is_recursively_redacted() -> None:

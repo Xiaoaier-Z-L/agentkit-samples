@@ -1,11 +1,20 @@
-name: hybrid_cloud_agent_harness
-entry_point: agent.py
-python_version: "3.12"
-launch_type: hybrid
-requirements: requirements.txt
-envs:
-  DEMO_MODE: auto
-  MODEL_AGENT_NAME: ${MODEL_AGENT_NAME}
-  MODEL_AGENT_API_KEY: ${MODEL_AGENT_API_KEY}
-  MODEL_AGENT_API_BASE: ${MODEL_AGENT_API_BASE}
-  HARNESS_TENANT_ID: ${HARNESS_TENANT_ID}
+common:
+  agent_name: hybrid_cloud_agent_harness
+  entry_point: agent.py
+  language: Python
+  language_version: "3.12"
+  agent_type: Basic App
+  dependencies_file: requirements.lock
+  runtime_envs:
+    # 完整混合云部署默认使用真实模型。交互脚本从当前终端读取模型
+    # 配置，并写入权限为 0600、退出即删除的临时配置。
+    DEMO_MODE: live
+    AGENT_APP_MODE: customer_service
+  launch_type: hybrid
+launch_types:
+  hybrid:
+    cr_instance_name: cr-basic
+    cr_namespace_name: agentkit
+    cr_repo_name: hybrid-cloud-agent-harness
+    runtime_name: hybrid-cloud-agent-harness
+docker_build: {}

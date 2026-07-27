@@ -16,7 +16,6 @@ from typing import Any
 from demo_core import HybridCustomerService
 from utils.models import AgentResponse, CapabilityEvent
 
-
 CONTROLLED_CAPABILITY_PREFIXES = (
     "tool.",
     "knowledge.",
@@ -174,9 +173,7 @@ class AgentHarness:
     @staticmethod
     def _controlled_calls(events: list[CapabilityEvent]) -> list[str]:
         return [
-            event.name
-            for event in events
-            if event.name.startswith(CONTROLLED_CAPABILITY_PREFIXES)
+            event.name for event in events if event.name.startswith(CONTROLLED_CAPABILITY_PREFIXES)
         ]
 
     def _redact_response(self, response: AgentResponse) -> int:
@@ -299,7 +296,9 @@ class AgentHarness:
 
         tools_event = CapabilityEvent(
             "harness.tools.authorize",
-            status="blocked" if tool_violations else ("skipped" if request_violations else "succeeded"),
+            status="blocked"
+            if tool_violations
+            else ("skipped" if request_violations else "succeeded"),
             mode=self.mode,
             detail={
                 "authorized": [name for name in calls if name in effective_tools],

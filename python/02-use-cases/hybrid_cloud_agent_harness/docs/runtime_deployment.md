@@ -2,6 +2,30 @@
 
 本文说明如何在本地使用 AgentKit CLI 将本样例部署到混合云智能体运行时。部署模式使用 `hybrid`：镜像在本地构建并上传到目标 CR，运行时在云端创建。
 
+## 推荐入口
+
+从 Demo 目录执行：
+
+```bash
+./scripts/deploy_interactive.sh
+```
+
+脚本会依次完成控制面选择、Region 确认、模型配置、依赖与测试、`linux/amd64`
+镜像构建和 Runtime 部署。模型 Key 只进入权限为 `0600` 的临时配置，脚本退出时删除。
+
+仍需人工完成的操作：
+
+1. 本机无法解析控制面域名时，先配置企业 DNS 或 `hosts`。
+2. Registry 临时令牌过期时，在控制台重新获取登录命令并手动执行 `docker login`。
+3. 首次部署发现同名 Runtime 时，确认是更新已有实例，还是修改
+   `agentkit.yaml.example` 中的 `runtime_name` 创建独立实例。
+4. 部署完成后，在控制台关联 Knowledge、Memory、Session、Sandbox、Skills 或 MCP
+   等可选组件，并重新发布；关联动作由平台注入对应环境变量。
+
+`agentkit launch` 成功不等于验收完成。还必须确认 Runtime 为
+`Ready / RUNNING / Healthy`，用它自己的 Endpoint 与 API Key 调用 `POST /invoke`
+成功，并在 Trace 中看到 Agent、Workflow、LLM/Tool Span。
+
 ## 1. 准备条件
 
 - 本地 Python 3.10+；本样例建议使用 Python 3.12。
@@ -76,7 +100,7 @@ agentkit config
 - 应用名称和入口文件分别为 `hybrid_cloud_agent_harness`、`agent.py`。
 - Python 版本为 `3.12`。
 - 部署模式为 `hybrid`。
-- 依赖文件为 `requirements.txt`。
+- 依赖文件为 `requirements.lock`。
 - `MODEL_AGENT_NAME`、`MODEL_AGENT_API_KEY`、`MODEL_AGENT_API_BASE` 从当前环境变量取得。
 
 `agentkit.yaml` 已被仓库忽略，不要强制提交它。

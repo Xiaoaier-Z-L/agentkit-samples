@@ -2,14 +2,13 @@
 
 from __future__ import annotations
 
-import os
 import logging
+import os
 from urllib.parse import urlparse
 
 import requests
 
 from platform_request_context import request_authorization
-
 
 logger = logging.getLogger(__name__)
 

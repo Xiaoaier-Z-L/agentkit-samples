@@ -69,14 +69,12 @@ hybrid_cloud_agent_harness/
 
 ```bash
 cd python/02-use-cases/hybrid_cloud_agent_harness
-python -m venv .venv
+uv venv --python 3.12
 source .venv/bin/activate
-pip install -r requirements.txt
-pip install pytest ruff
-
-ruff check .
-pytest -q
-DEMO_MODE=demo python client.py
+uv sync --frozen --extra dev
+uv run --frozen ruff check .
+uv run --frozen pytest -q
+DEMO_MODE=demo uv run --frozen python client.py
 ./scripts/run_local_ui.sh
 ```
 
@@ -84,19 +82,18 @@ DEMO_MODE=demo python client.py
 
 ## 混合云部署与验证
 
-平台通用部署步骤直接参考仓库内的 [智能体运行时部署文档](docs/runtime_deployment.md)。文档只描述标准本地开发与混合云部署路径，不依赖某个固定控制台环境。
+首次部署只使用一个交互入口。它会复用或引导配置 AgentKit 控制面、要求人工确认
+Region、隐藏读取模型 Key、运行测试、构建 `linux/amd64` 镜像并部署；任何凭据都不会
+写入仓库文件。
 
 ```bash
-# 公共变量配置（从环境变量读取）
-# AgentKit OpenAPI 的访问域名，其中 xxx、yyy 为云管理平台用户端的域名，请根据实际情况替换。
-COMMON_HOST="openapi.xxx.yyy"
-
-cp agentkit.yaml.example agentkit.yaml
-export HARNESS_TENANT_ID=<trusted-deployment-tenant>
-agentkit config
-agentkit launch
-agentkit status
+./scripts/deploy_interactive.sh
 ```
+
+完整原理、人工操作点和发布验收见
+[智能体运行时部署文档](docs/runtime_deployment.md)。Registry 临时令牌有有效期；
+出现 `token expired` 或 `unauthorized` 时，需要在控制台重新获取临时登录命令，
+手动执行 `docker login`，再重新运行部署入口。
 
 在 Runtime **高级配置 → 观测服务**勾选**启用**并重新发布，然后按以下顺序验收：
 

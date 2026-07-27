@@ -14,7 +14,7 @@ def main() -> None:
         "分析过去一年的投诉趋势并预测下季度",
     ]
     for message in prompts:
-        result = service.chat(message).to_dict()
+        result = service.invoke(message).to_dict()
         harness_events = [
             event["name"] for event in result["events"] if event["name"].startswith("harness.")
         ]

@@ -11,12 +11,12 @@ import json
 import logging
 import os
 
-from harness import AgentHarness
 from a2a_client import a2a_data_agent_configured, delegate_complaint_trend_analysis
 from engineering_harness import CustomerPolicyHarness
+from harness import AgentHarness
 from platform_knowledge import build_platform_knowledge
-from platform_memory import build_platform_memory
 from platform_mcp import build_platform_mcp_router
+from platform_memory import build_platform_memory
 from platform_request_context import RequestAuthorizationMiddleware, request_identity
 from prompts import INSTRUCTION
 from utils.config import Settings
@@ -238,7 +238,7 @@ def agent_harness_demo(
     session_id = identity.session_id if identity is not None else "session-001"
     identity_source = identity.source if identity is not None else "direct-tool-call"
     return json.dumps(
-        service.chat(
+        service.invoke(
             message,
             tenant_id=tenant_id,
             user_id=user_id,

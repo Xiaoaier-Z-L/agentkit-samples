@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-
 BLOCKED_PATTERNS = (
     "ignore all previous",
     "system prompt",

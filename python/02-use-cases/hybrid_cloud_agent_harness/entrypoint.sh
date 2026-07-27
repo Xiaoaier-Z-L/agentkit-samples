@@ -3,11 +3,11 @@ set -eu
 
 : "${MODEL_AGENT_API_BASE:=${ARK_BASE_URL:-https://ark.cn-beijing.volces.com/api/v3}}"
 : "${MODEL_AGENT_API_KEY:=${ARK_API_KEY:-}}"
-: "${MODEL_AGENT_NAME:=${ARK_MODEL:-}}"
+: "${MODEL_AGENT_NAME:=${ARK_MODEL:-deepseek-v4-pro-260425}}"
 : "${ARK_BASE_URL:=${MODEL_AGENT_API_BASE}}"
 : "${ARK_API_KEY:=${MODEL_AGENT_API_KEY}}"
 : "${ARK_MODEL:=${MODEL_AGENT_NAME}}"
-: "${DEMO_MODE:=auto}"
+: "${DEMO_MODE:=live}"
 : "${PORT:=8000}"
 : "${AGENT_APP_MODE:=customer_service}"
 

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+from typing import Self
 
 import httpx
 import pytest
@@ -85,7 +86,7 @@ def test_delegation_failure_is_returned_as_a_tool_result(
         def __init__(self, **_: object) -> None:
             pass
 
-        async def __aenter__(self) -> "FailingAsyncClient":
+        async def __aenter__(self) -> Self:
             return self
 
         async def __aexit__(self, *_: object) -> None:

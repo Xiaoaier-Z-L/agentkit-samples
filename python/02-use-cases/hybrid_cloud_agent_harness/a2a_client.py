@@ -2,14 +2,13 @@
 
 from __future__ import annotations
 
-import os
 import logging
+import os
 from dataclasses import dataclass
 from typing import Any
 from uuid import uuid4
 
 import httpx
-
 
 REQUIRED_A2A_SKILL = "complaint-trend-analysis"
 logger = logging.getLogger(__name__)

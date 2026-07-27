@@ -25,9 +25,7 @@ def test_ralph_style_loop_repairs_from_mechanical_feedback(tmp_path) -> None:
 
 
 def test_completion_is_blocked_by_iteration_budget(tmp_path) -> None:
-    harness = CustomerPolicyHarness(
-        tmp_path, policy=EngineeringHarnessPolicy(max_iterations=4)
-    )
+    harness = CustomerPolicyHarness(tmp_path, policy=EngineeringHarnessPolicy(max_iterations=4))
     result = harness.run("将退款窗口调整为 10 天", run_id="budget-block")
 
     assert result.status == "blocked"

@@ -30,7 +30,6 @@ from fastapi import FastAPI
 
 from tools.analysis import complaint_trend
 
-
 SKILL_ID = "complaint-trend-analysis"
 
 

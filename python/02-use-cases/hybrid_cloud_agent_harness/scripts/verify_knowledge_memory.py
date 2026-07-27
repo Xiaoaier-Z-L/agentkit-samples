@@ -42,7 +42,7 @@ def invoke(endpoint: str, api_key: str, *, prompt: str, user_id: str, session_id
     )
     visible_parts: list[str] = []
     try:
-        with urlopen(request, timeout=90) as response:  # noqa: S310 - endpoint is user supplied
+        with urlopen(request, timeout=90) as response:
             for raw_line in response:
                 line = raw_line.decode("utf-8").strip()
                 if not line.startswith("data: "):
